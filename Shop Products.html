@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="/css/Shop Products.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <style>
+        @import url('https:://fonts.googleapis.com/css?famil=Poppins:wght@400;500;600display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 9%;
+    background-color: #bde;
+    background: #bde;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 25px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#cart-icon {
+    position: relative;
+    display: flex;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#cart-icon .cart-item-count {
+    position: absolute;
+    top: 0;
+    right: -6px;
+    width: 20px;
+    height: 20px;
+    background: #e35f26;
+    border-radius: 50%;
+    font-size: 12px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+
+.shop {
+    padding: 100px 9% 30px;
+}
+
+.section-title {
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.product-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.product-box .img-box {
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.img-box img {
+    width: 100%;
+    transition: 0.5s;
+}
+
+.img-box:hover img {
+    transform: scale(1.1);
+}
+
+.product-box .product-title {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.product-box .price-and-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-and-cart .price {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.price-and-cart .add-cart {
+    padding: 10px;
+    background: #e35f26;
+    border-radius: 6px;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cart {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 360px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 65px 20px 40px;
+    z-index: 100%;
+    overflow: auto;
+    transition: 0.5s;
+}
+
+.cart.active {
+    right: 0;
+}
+
+.cart-titel {
+    text-align: center;
+    font-size: 30px;
+}
+
+.cart-box {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.cart-box img {
+    width: 100px;
+    height: 100px;
+    border-radius: 6px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.cart-detail {
+    display: grid;
+    gap: 8px;
+    margin-right: auto;
+}
+
+.cart-product-title {
+    font-size: 16px;
+    line-height: 1;
+}
+
+
+.cart-price {
+    font-weight: 500;
+}
+
+.cart-quantity {
+    display: flex;
+    width: 100px;
+    border: 1px solid #999;
+    border-radius: 6px;
+}
+
+.cart-quantity button {
+    background: transparent;
+    width: 30px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cart-quantity #decrement {
+    color: #999;
+}
+
+.cart-quantity .number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    cursor: default;
+}
+
+.cart-remove {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid #333;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.total-price {
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+.btu-buy {
+    display: block;
+    padding: 10px 30px;
+    background: #e35f26;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #fff;
+    margin: 20px auto 0;
+    cursor: pointer;
+}
+
+#cart-close {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+
+
+     </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>        
+            </button>
+            <a href="" class="navbar-brand">
+                <img src="./photo_2025-02-12_09-07-08.jpg" width="50px" height="50px" class="rounded-circle" alt="">
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav col-12 justify-content">
+                    <li class="nav-item">
+                        <a href="./index.html" class="nav-link active">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./Shop Products.html" class="nav-link active">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./Services.html" class="nav-link active">SERVICES</a>
+                    </li>
+                </ul>
+            </div>
+            <form class="d-flex" role="search">
+                <input type="text" class="form-control me-3" placeholder="search">
+                <button class="btn btn-outline" style="background-color: rgb(0, 255, 34);">
+                    <a href="./sign up.html" class="text-decoration-none text-nowrap" style="color: black;">Sign up</a>
+                </button>
+            </form>
+        </div>
+     </nav>
+    <div class="cart">
+        <i class="ri-close-line" id="cart-close"></i>
+    </div>
+   
+    <section class="shop">
+        <h1 class="section-title">Shop Products</h1>
+        <div class="product-content">
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./Basic.jpg">
+                </div>
+                <h2 class="product-content">Arena ll</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  99$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./cloud Earbud ll.jpg">
+                </div>
+                <h2 class="product-content">Cloud Earbud ll</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  49$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./cloud III.jpg">
+                </div>
+                <h2 class="product-content">Cloud lll</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  125$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./Cloud Revolver.jpg">
+                </div>
+                <h2 class="product-content">Cloud Revolver</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  149$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./ps5 controller.jpg">
+                </div>
+                <h2 class="product-content">PS5 Controller</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  75$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./Pudding Keycap.jpg">
+                </div>
+                <h2 class="product-content">Pudding Keycap</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  35$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./quadcast 2 s.jpg">
+                </div>
+                <h2 class="product-content">Quadcast 2 S</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  135$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./solocast.jpg">
+                </div>
+                <h2 class="product-content">Solocast</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  59$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./alloy orgin core.jpg">
+                </div>
+                <h2 class="product-content">Alloy Origin</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  79$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./Xbox One s  Battery.jpg">
+                </div>
+                <h2 class="product-content">BATTERY PACX</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  25$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./cloud storage 2 core.jpg">
+                </div>
+                <h2 class="product-content">Cloud Stinger </h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  49$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./HyperX Cloud Alpha, Red.jpg">
+                </div>
+                <h2 class="product-content">HyperX cloud, Red</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  99$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./cloud storage 2 Wireless .jpg">
+                </div>
+                <h2 class="product-content">Cloud Storage  </h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  85$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./Alloy Origin Core.jpg">
+                </div>
+                <h2 class="product-content">Alloy Origin Core</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  79$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+
+            <div class="product-box">
+                <div class="img-box">
+                    <img src="./ZEB-LS20-pic1.webp">
+                </div>
+                <h2 class="product-content">ZEBRONNLCS</h2>
+                <div class="price-and-cart">
+                    <span class="price"><b>ONLY</b>:<B style="color: slateblue;">  35$</B></span>
+                    <i class="ri-shopping-bag-line add-cart"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container-fluid" style="background-color: rgb(41, 38, 38);">
+b        <div class="row mt-5" style="color: aliceblue;">
+          <div class="col-3 py-5">
+            <div class="text-lead py-3"><b>Get in touch with us</b></div>
+            <div class="text-lead mt-2"><b>Moderna company Inc</b></div>
+            <div class="text-nowrap">Modernbuiling suite V124,AB 01</div>
+            <div class="lead">Someplace 16425 Earth</div>
+            <div class="lead text-nowrap mt-2">(123)456-7890-(123)555-7891</div>
+            <div class="lead">email@domailnna me</div>
+          </div>
+          <div class="col-3 py-5">
+            <div class="py-3"><b>Pages</b></div>
+            <div class="lead mt-2">Press release</div>
+            <div class="lead">Terms snd conditions</div>
+            <div class="lead">Privacy policy</div>
+            <div class="lead">Career center</div>
+            <div class="lead">Contact us</div>
+          </div>
+          <div class="col-3 py-5">
+            <div class="py-3"><b>Latest posts</b></div>
+            <div class="lead text-nowrap">Lorem ipsum dolor sit amet,consectetur</div>
+            <div class="lead">adipscing elit.</div>
+            <div class="lang text-nowrap">Pellentesque et pulvinar enim Quisque</div>
+            <div class="lead">at tempor ligula</div>
+            <div class="lead text-nowrap">Natus error sit voluptatem accuastium</div>
+            <div class="lead">doloremque</div>
+          </div>
+          <div class="col-3 py-5">
+            <div class="py-3"><b>Flickr photostream</b></div>
+          </div>
+          <div class="row"> 
+              <div class="lead">Moderna 2014 right resrved.By Bootstraptaste</div>
+             <div class="text-end ">
+                <a href="https://www.facebook.com/share/1A81ZBvXBX/?mibextid=qi2Omg" class="text-decoration-none" style="color: aliceblue;">
+                  <i class="bi bi-facebook"></i>
+                </a>
+                <a href="https://www.youtube.com/channel/UCJ99nS_X1h_ss0qppcx3Igg" class="text-decoration-none" style="color: aliceblue;">
+                  <i class="bi bi-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/@unsokhenarim?_t=ZS-8tXyMSW7pIa&_r=1" class="text-decoration-none" style="color: aliceblue;">
+                    <i class="bi bi-tiktok"></i>
+                </a>
+                <a href="https://t.me/Sokhenxariemmz" class="text-decoration-none" style="color: aliceblue;">
+                    <i class="bi bi-telegram"></i>
+                </a>
+                <a href="https://m.me/" class="text-decoration-none" style="color: aliceblue;">
+                    <i class="bi bi-messenger"></i>
+                </a>
+            </div>
+        </div>
+      </div>
+</body>
+</html>
